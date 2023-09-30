@@ -21,7 +21,7 @@ postRouter.get("/", async (req, res) => {
     });
     return res.send({
       success: true,
-      message: posts,
+      posts,
     });
   } catch (error) {
     return res.send({

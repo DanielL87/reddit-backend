@@ -90,13 +90,13 @@ voteRouter.delete("/upvotes/:postId", async (req, res) => {
       return res.send({ success: false, error: "Post doesn't exist" });
     }
 
-    const vote = await prisma.upvote.delete({
+    const upvote = await prisma.upvote.delete({
       where: {
         userId_postId: { userId: req.user.id, postId },
       },
     });
 
-    res.send({ success: true, vote });
+    res.send({ success: true, upvote });
   } catch (error) {
     res.send({ success: false, error: error.message });
   }
@@ -188,13 +188,13 @@ voteRouter.delete("/downvotes/:postId", async (req, res) => {
       return res.send({ success: false, error: "Post doesn't exist" });
     }
 
-    const vote = await prisma.downvote.delete({
+    const downvote = await prisma.downvote.delete({
       where: {
         userId_postId: { userId: req.user.id, postId },
       },
     });
 
-    res.send({ success: true, vote });
+    res.send({ success: true, downvote });
   } catch (error) {
     res.send({ success: false, error: error.message });
   }
