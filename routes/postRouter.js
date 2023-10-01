@@ -39,7 +39,7 @@ postRouter.get("/:postId", async (req, res) => {
       where: { id: postId },
       include: { children: true },
     });
-    console.log(post);
+
     res.send({ success: true, post });
   } catch (error) {
     res.send({ success: false, error: error.message });
