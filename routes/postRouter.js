@@ -31,6 +31,21 @@ postRouter.get("/", async (req, res) => {
   }
 });
 
+postRouter.get("/:postId", async (req, res) => {
+  try {
+    const { postId } = req.params;
+
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
+      include: { children: true },
+    });
+    console.log(post);
+    res.send({ success: true, post });
+  } catch (error) {
+    res.send({ success: false, error: error.message });
+  }
+});
+
 postRouter.post("/", async (req, res) => {
   try {
     const { text, title, subredditId, parentId } = req.body;
