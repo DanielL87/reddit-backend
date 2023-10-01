@@ -38,20 +38,16 @@ postRouter.get("/:postId", async (req, res) => {
     const post = await prisma.post.findUnique({
       where: { id: postId },
       include: {
-        children: {
-          include: {
-            subreddit: true,
-            children: true,
-            user: {
-              select: {
-                id: true,
-                username: true,
-              },
-            },
-            downvotes: true,
-            upvotes: true,
+        subreddit: true,
+        children: true,
+        user: {
+          select: {
+            id: true,
+            username: true,
           },
         },
+        downvotes: true,
+        upvotes: true,
       },
     });
 
